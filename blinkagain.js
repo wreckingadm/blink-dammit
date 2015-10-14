@@ -6,32 +6,11 @@
  * Copyright 2015 BOXdev.com, wreckreation.org
  */
 
-var BlinkAgainProto = Object.create( HTMLElement.prototype );
-
-Object.defineProperty( BlinkAgainProto, 'rate', { 
-    value: 20,
-    writable : true
-});
-
-Object.defineProperty( BlinkAgainProto, 'smooth', { 
-    value: false,
-    writable : true
-});
-
-var BlinkAgainElement = document.registerElement( 'blink-',  { 
-    prototype: BlinkAgainProto
-});
-
-$( document ).ready( function()
+// https://en.wikipedia.org/wiki/Blink_element
+setInterval( function()
 {
-   blink();
-});
-
-function blink() {
-   setTimeout( function()
+   $( 'blink' ).each( function()
    {
-      //TODO: toggle() won't work because it removes the DOM from the flow
-      $( 'blink-' ).toggle();
-      blink();
-   }, 1000 );
-}
+      $( this ).css( 'visibility' , $( this ).css( 'visibility' ) === 'hidden' ? '' : 'hidden' )
+   });
+}, 1000);
